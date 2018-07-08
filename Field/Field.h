@@ -15,8 +15,8 @@ public:
 	E getAddInv() = 0;
 	E getMulInv() = 0;
 	E add(const &E, const &E) = 0;
-	E sub(const &E, const &E);  // a-b = a+(-b)
+	E sub(const &E, const &E) = 0;  // a-b = a+(-b)
 	E mul(const &E, const &E) = 0;
-	E div(const &E, const &E);	// a/b = a*(b^-1)
+	E div(const &E, const &E) = 0;	// a/b = a*(b^-1)
 };
 
