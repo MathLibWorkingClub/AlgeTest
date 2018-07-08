@@ -1,0 +1,3 @@
+#define AlgeTest_VERSION_MAJOR @AlgeTest_VERSION_MAJOR@
+#define AlgeTest_VERSION_MINOR @AlgeTest_VERSION_MINOR@
+#cmakedefine USE_NUM
