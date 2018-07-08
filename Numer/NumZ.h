@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-#include "Number/Num.h"
+#include "Num.h"
 
 class NumZ : public Num
 {
