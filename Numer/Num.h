@@ -8,7 +8,7 @@ public:
 	Num(const &Num n);
 
 	Num operator+(const &Num);
-	Num operator-(const &NUm);
+	Num operator-(const &Num);
 	Num operator*(const &Num);
 	Num operator/(const &Num);
 	Num operator%(const &Num);
