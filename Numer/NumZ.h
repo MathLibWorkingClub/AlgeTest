@@ -14,28 +14,28 @@ protected:
 	Sign sign;
 public:
 	NumZ();
-	explicite NumZ(size_t len);
+	explicit NumZ(size_t len);
 	NumZ(size_t len, int_fast32_t* bPat, Sign s);
-	NumZ(const& NumZ);
+	NumZ(const NumZ&);
 
-	NumZ operator+(const &NumZ);
-	NumZ operator-(const &NumZ);
-	NumZ operator*(const &NumZ);
-	NumZ operator/(const &NumZ);
-	NumZ operator%(const &NumZ);
+	NumZ operator+(const NumZ&);
+	NumZ operator-(const NumZ&);
+	NumZ operator*(const NumZ&);
+	NumZ operator/(const NumZ&);
+	NumZ operator%(const NumZ&);
 
-	void operator+=(const &NumZ);
-	void operator-=(const &NumZ);
-	void operator*=(const &NumZ);
-	void operator/=(const &NumZ);
-	void operator%=(const &NumZ);
+	void operator+=(const NumZ&);
+	void operator-=(const NumZ&);
+	void operator*=(const NumZ&);
+	void operator/=(const NumZ&);
+	void operator%=(const NumZ&);
 
-	bool operator==(const &NumZ);
-	bool operator!=(const &NumZ);
-	bool operator>(const &NumZ);
-	bool operator<(const &NumZ);
-	bool operator>=(const &NumZ);
-	bool operator<=(const &NumZ);
+	bool operator==(const NumZ&);
+	bool operator!=(const NumZ&);
+	bool operator>(const NumZ&);
+	bool operator<(const NumZ&);
+	bool operator>=(const NumZ&);
+	bool operator<=(const NumZ&);
 
 	void compact(); // Shorten the bitPat by remove leading-zeros
 };
