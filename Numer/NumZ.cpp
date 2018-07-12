@@ -122,15 +122,15 @@ bool NumZ::operator<=(const NumZ&)
 
 void NumZ::compact()
 {
-	size_t k = 0;
-	for (size_t i = this->bitPatLen-1; this->bitPat[ i ] ==0&&i>0; i--)
+	size_t zeroCount = 0;
+	for (size_t i = this->bitPatLen-1; this->bitPat[i]==0 && i>0; i--)
 	{
-		k++;
-	};
-	this->bitPatLen = this->bitPatLen - k;
-	unit32_t* temp =new unit32_t[this->bitPatLen];
-	memcpy(temp.bitPat, temp.bitPat, sizeof(uint32_t)*this->bitPatLen);
-	delete[]this->bitPat;
-	this->bitPat =temp;
-	
+		zeroCount++;
+	};  // count leading-zero groups
+
+	this->bitPatLen = this->bitPatLen - zeroCount; // Revise bitPatLen
+	uint32_t* newBitPat = new uint32_t[this->bitPatLen]; // Create newBitPat array
+	memcpy(newBitPat, this->bitPat+zeroCount, sizeof(uint32_t)*this->bitPatLen); // Copy valid old bitPat part to the newBitPat
+	delete [] this->bitPat; // Delete the old array
+	this->bitPat = newBitPat; // Let the bitPat ptr point to the new bit-pat array
 }

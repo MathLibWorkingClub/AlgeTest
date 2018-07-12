@@ -4,6 +4,9 @@ template <typename E>
 class Set
 {
 protected:
-private:
-
+	
+public:
+	Set();
+	Set(const Set&); // Get a copy of the set
+	
 };
