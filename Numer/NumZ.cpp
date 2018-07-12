@@ -6,10 +6,19 @@ NumZ::NumZ()
 
 NumZ::NumZ(size_t len)
 {
+	this->bitPatLen = len;
+	this->bitPat = new uint32_t[len];
+	for (size_t i = 0; i < len; i++)
+	{
+		this->bitPat[i] = 0;
+	}
 }
 
 NumZ::NumZ(size_t len, int_fast32_t * bPat, Sign s)
 {
+	this->bitPatLen = len;
+	this->bitPat = new uint32_t[len];
+	memcpy(this->bitPat, bPat, sizeof(uint32_t)*len);
 }
 
 NumZ::NumZ(const NumZ& opd)
@@ -17,55 +26,61 @@ NumZ::NumZ(const NumZ& opd)
 	this->bitPatLen = opd.bitPatLen;
 	this->sign = opd.sign;
 	this->bitPat = new uint32_t[opd.bitPatLen];
-
 	memcpy(this->bitPat, opd.bitPat, sizeof(uint32_t)*this->bitPatLen);
 }
 
-NumZ NumZ::operator+(const NumZ& opd)
+NumZ NumZ::operator+(const NumZ& opd) const
 {
-	if (this->sign == opd.sign) {
-		NumZ rst = NumZ();
-		rst.bitPatLen = (opd.bitPatLen + this->bitPatLen + abs(opd.bitPatLen - this->bitPatLen)) / 2 + 1;
-		rst.bitPat = new unit32_t[this->bitPatLen];
-		int k = 0;
-		for (size_t i = 0; i < this->bitPatLen; i++) {
-			if (temp->bitPat[i] == opd.bitPat[i]) {
-				rst.bitPat[i] = k;
-				if (opd.bitPat[i] == 1) {
-					k = 1;
-				}
-			}
-	else if (k == 1) {
-				rst.bitPat[i] = 0;
-			}
-	else {
-		rst.bitPat[i] = 1;
-		k = 0;
+	NumZ rst;
+
+	size_t len = (this->bitPatLen > opd.bitPatLen) ? (this->bitPatLen) : (opd.bitPatLen) + 1;
+	// Prepare for operand bitPats
+	uint32_t* opa = new uint32_t[len];
+	memcpy(opa + (len - this->bitPatLen), this->bitPat, this->bitPatLen);
+	uint32_t* opb = new uint32_t[len];
+	memcpy(opb + (len - opd.bitPatLen), opd.bitPat, opd.bitPatLen);
+	rst.bitPatLen = len;
+	
+	if (this->sign == opd.sign)
+	{
+		rst.sign = this->sign;
+		rst.bitPat = Num::bitPatAdd(opa, opb, len);
 	}
+	else
+	{
+		if (Num::bitPatCompare(opa, opb, len))
+		{
+			rst.sign = this->sign;
+			rst.bitPat = Num::bitPatSub(opa, opb, len);
+		}
+		else
+		{
+			rst.sign = opd.sign;
+			rst.bitPat = Num::bitPatSub(opb, opa, len);
 		}
 	}
-}
-rst.compact();
 
-return rst;
+	rst.compact();
+
+	return rst;
 }
 
-NumZ NumZ::operator-(const NumZ&)
+NumZ NumZ::operator-(const NumZ&) const
 {
 	return NumZ();
 }
 
-NumZ NumZ::operator*(const NumZ&)
+NumZ NumZ::operator*(const NumZ&) const
 {
 	return NumZ();
 }
 
-NumZ NumZ::operator/(const NumZ&)
+NumZ NumZ::operator/(const NumZ&) const
 {
 	return NumZ();
 }
 
-NumZ NumZ::operator%(const NumZ&)
+NumZ NumZ::operator%(const NumZ&) const
 {
 	return NumZ();
 }
@@ -90,32 +105,32 @@ void NumZ::operator%=(const NumZ&)
 {
 }
 
-bool NumZ::operator==(const NumZ&)
+bool NumZ::operator==(const NumZ&) const
 {
 	return false;
 }
 
-bool NumZ::operator!=(const NumZ&)
+bool NumZ::operator!=(const NumZ&) const
 {
 	return false;
 }
 
-bool NumZ::operator>(const NumZ&)
+bool NumZ::operator>(const NumZ&) const
 {
 	return false;
 }
 
-bool NumZ::operator<(const NumZ&)
+bool NumZ::operator<(const NumZ&) const
 {
 	return false;
 }
 
-bool NumZ::operator>=(const NumZ&)
+bool NumZ::operator>=(const NumZ&) const
 {
 	return false;
 }
 
-bool NumZ::operator<=(const NumZ&)
+bool NumZ::operator<=(const NumZ&) const
 {
 	return false;
 }

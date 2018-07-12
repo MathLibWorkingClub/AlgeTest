@@ -18,11 +18,11 @@ public:
 	NumZ(size_t len, int_fast32_t* bPat, Sign s);
 	NumZ(const NumZ&);
 
-	NumZ operator+(const NumZ&);
-	NumZ operator-(const NumZ&);
-	NumZ operator*(const NumZ&);
-	NumZ operator/(const NumZ&);
-	NumZ operator%(const NumZ&);
+	NumZ operator+(const NumZ&) const;
+	NumZ operator-(const NumZ&) const;
+	NumZ operator*(const NumZ&) const;
+	NumZ operator/(const NumZ&) const;
+	NumZ operator%(const NumZ&) const;
 
 	void operator+=(const NumZ&);
 	void operator-=(const NumZ&);
@@ -30,12 +30,12 @@ public:
 	void operator/=(const NumZ&);
 	void operator%=(const NumZ&);
 
-	bool operator==(const NumZ&);
-	bool operator!=(const NumZ&);
-	bool operator>(const NumZ&);
-	bool operator<(const NumZ&);
-	bool operator>=(const NumZ&);
-	bool operator<=(const NumZ&);
+	bool operator==(const NumZ&) const;
+	bool operator!=(const NumZ&) const;
+	bool operator>(const NumZ&) const;
+	bool operator<(const NumZ&) const;
+	bool operator>=(const NumZ&) const;
+	bool operator<=(const NumZ&) const;
 
 	void compact(); // Shorten the bitPat by remove leading-zeros
 };
