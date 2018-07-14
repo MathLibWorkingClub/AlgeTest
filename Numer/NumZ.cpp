@@ -14,7 +14,7 @@ NumZ::NumZ(size_t len)
 	}
 }
 
-NumZ::NumZ(size_t len, int_fast32_t * bPat, Sign s)
+NumZ::NumZ(size_t len, int_fast32_t * bPat, bool s)
 {
 	this->bitPatLen = len;
 	this->bitPat = new uint32_t[len];
@@ -27,6 +27,13 @@ NumZ::NumZ(const NumZ& opd)
 	this->sign = opd.sign;
 	this->bitPat = new uint32_t[opd.bitPatLen];
 	memcpy(this->bitPat, opd.bitPat, sizeof(uint32_t)*this->bitPatLen);
+}
+
+NumZ NumZ::operator-() const
+{
+	NumZ rst(*this);
+	rst.sign = !rst.sign;
+	return rst;
 }
 
 NumZ NumZ::operator+(const NumZ& opd) const
@@ -65,9 +72,9 @@ NumZ NumZ::operator+(const NumZ& opd) const
 	return rst;
 }
 
-NumZ NumZ::operator-(const NumZ&) const
+NumZ NumZ::operator-(const NumZ& opd) const
 {
-	return NumZ();
+	return (*this) + (-opd);
 }
 
 NumZ NumZ::operator*(const NumZ&) const
@@ -81,6 +88,60 @@ NumZ NumZ::operator/(const NumZ&) const
 }
 
 NumZ NumZ::operator%(const NumZ&) const
+{
+	return NumZ();
+}
+
+NumZ NumZ::wrappingAdd(const NumZ& opd) const
+{
+	NumZ rst;
+
+	size_t len = (this->bitPatLen > opd.bitPatLen) ? (this->bitPatLen) : (opd.bitPatLen);
+	// Prepare for operand bitPats
+	uint32_t* opa = new uint32_t[len];
+	memcpy(opa + (len - this->bitPatLen), this->bitPat, this->bitPatLen);
+	uint32_t* opb = new uint32_t[len];
+	memcpy(opb + (len - opd.bitPatLen), opd.bitPat, opd.bitPatLen);
+	rst.bitPatLen = len;
+
+	if (this->sign == opd.sign)
+	{
+		rst.sign = this->sign;
+		rst.bitPat = Num::bitPatAdd(opa, opb, len);
+	}
+	else
+	{
+		if (Num::bitPatCompare(opa, opb, len))
+		{
+			rst.sign = this->sign;
+			rst.bitPat = Num::bitPatSub(opa, opb, len);
+		}
+		else
+		{
+			rst.sign = opd.sign;
+			rst.bitPat = Num::bitPatSub(opb, opa, len);
+		}
+	}
+
+	return rst;
+}
+
+NumZ NumZ::wrappingSub(const NumZ &opd) const
+{
+	return (*this) - (-opd);
+}
+
+NumZ NumZ::wrappingMul(const NumZ &) const
+{
+	return NumZ();
+}
+
+NumZ NumZ::wrappingDiv(const NumZ &) const
+{
+	return NumZ();
+}
+
+NumZ NumZ::wrappingRem(const NumZ &) const
 {
 	return NumZ();
 }

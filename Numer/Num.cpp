@@ -62,33 +62,3 @@ bool Num::bitPatCompare(uint32_t * opa, uint32_t * opb, int len)
 
 	return true;
 }
-
-Num Num::operator=(const Num&)
-{
-	return Num();
-}
-
-Num Num::operator+(const Num&)
-{
-	return Num();
-}
-
-Num Num::operator-(const Num&)
-{
-	return Num();
-}
-
-Num Num::operator*(const Num&)
-{
-	return Num();
-}
-
-Num Num::operator/(const Num&)
-{
-	return Num();
-}
-
-Num Num::operator%(const Num&)
-{
-	return Num();
-}
