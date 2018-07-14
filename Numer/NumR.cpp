@@ -66,7 +66,7 @@ NumR NumR::operator+(const NumR& opd) const
 		}
 	}
 
-	rst.compact();
+	//rst.compact();
 
 	return rst;
 }
