@@ -1,9 +1,5 @@
 #pragma once
 
-#include <cstdlib>
-#include <cstdint>
-#include <string>
-
 #include "Num.h"
 
 class NumR : public Num
@@ -12,11 +8,11 @@ protected:
 	size_t bitPatLen;
 	size_t bitPatPrec;
 	uint32_t* bitPat;
-	Sign sign;
+	bool sign;
 public:
 	NumR();
 	explicit NumR(size_t len, size_t prec);
-	NumR(size_t len, size_t prec, int_fast32_t* bPat, Sign s);
+	NumR(size_t len, size_t prec, int_fast32_t* bPat, bool s);
 	NumR(const NumR&);
 
 	NumR operator+(const NumR&) const;

@@ -15,7 +15,7 @@ NumR::NumR(size_t len, size_t prec)
 	}
 }
 
-NumR::NumR(size_t len, size_t prec, int_fast32_t * bPat, Sign s)
+NumR::NumR(size_t len, size_t prec, int_fast32_t * bPat, bool s)
 {
 	this->bitPatLen = len;
 	this->bitPatPrec = prec;

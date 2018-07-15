@@ -1,9 +1,5 @@
 #pragma once
 
-#include <cstdlib>
-#include <cstdint>
-#include <string>
-
 #include "Num.h"
 
 class NumZ : public Num

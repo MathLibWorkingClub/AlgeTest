@@ -4,11 +4,11 @@
 #include <cstdint>
 #include <string>
 
-#include <NumZ.h>
-#include <NumQ.h>
-#include <NumR.h>
-#include <NumC.h>
-#include <NumV.h>
+//#include <NumZ.h>
+//#include <NumQ.h>
+//#include <NumR.h>
+//#include <NumC.h>
+//#include <NumV.h>
 
 class Num
 {
