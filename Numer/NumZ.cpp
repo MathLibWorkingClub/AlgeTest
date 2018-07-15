@@ -76,7 +76,7 @@ NumZ NumZ::operator+(const NumZ& opd) const
 		}
 	}
 
-	//rst.compact();
+	rst.compact();
 
 	return rst;
 }
