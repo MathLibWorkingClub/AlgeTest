@@ -1,5 +1,9 @@
 #pragma once
 
+#include <cstdlib>
+#include <cstdint>
+#include <string>
+
 #include <NumZ.h>
 #include <NumQ.h>
 #include <NumR.h>

@@ -41,11 +41,20 @@ NumZ NumZ::operator+(const NumZ& opd) const
 	NumZ rst;
 
 	size_t len = (this->bitPatLen > opd.bitPatLen) ? (this->bitPatLen) : (opd.bitPatLen) + 1;
+
 	// Prepare for operand bitPats
 	uint32_t* opa = new uint32_t[len];
-	memcpy(opa + (len - this->bitPatLen), this->bitPat, this->bitPatLen);
+	memcpy(opa, this->bitPat, this->bitPatLen);
+	for (size_t i = len - 1; i >= this->bitPatLen; i--)
+	{
+		opa[i] = 0;
+	}
 	uint32_t* opb = new uint32_t[len];
-	memcpy(opb + (len - opd.bitPatLen), opd.bitPat, opd.bitPatLen);
+	memcpy(opb, opd.bitPat, opd.bitPatLen);
+	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
+	{
+		opb[i] = 0;
+	}
 	rst.bitPatLen = len;
 	
 	if (this->sign == opd.sign)
@@ -99,9 +108,17 @@ NumZ NumZ::wrappingAdd(const NumZ& opd) const
 	size_t len = (this->bitPatLen > opd.bitPatLen) ? (this->bitPatLen) : (opd.bitPatLen);
 	// Prepare for operand bitPats
 	uint32_t* opa = new uint32_t[len];
-	memcpy(opa + (len - this->bitPatLen), this->bitPat, this->bitPatLen);
+	memcpy(opa, this->bitPat, this->bitPatLen);
+	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
+	{
+		opa[i] = 0;
+	}
 	uint32_t* opb = new uint32_t[len];
-	memcpy(opb + (len - opd.bitPatLen), opd.bitPat, opd.bitPatLen);
+	memcpy(opb, opd.bitPat, opd.bitPatLen);
+	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
+	{
+		opb[i] = 0;
+	}
 	rst.bitPatLen = len;
 
 	if (this->sign == opd.sign)
