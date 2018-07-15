@@ -8,5 +8,7 @@ using namespace std;
 int main()
 {
 	cout << "Hello CMake." << endl;
+
+	cin.get();
 	return 0;
 }
