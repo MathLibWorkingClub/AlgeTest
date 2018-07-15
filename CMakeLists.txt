@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.5)
 project (AlgeTest)
-SET (CMAKE_CXX_FLAGS "-std=c++11 -O3")
+SET (CMAKE_CP_FLAGS "-std=c++11 -O3")
 # The version number
 set (AlgeTest_VERSION_MAJOR 0.1)
 set (AlgeTest_VERSION_MINOR 0.0)

@@ -10,7 +10,7 @@ NumZ::NumZ(size_t len)
 	this->bitPat = new uint32_t[len];
 	for (size_t i = 0; i < len; i++)
 	{
-		this->bitPat[i] = 0;
+		this->bitPat[i] = 0u;
 	}
 }
 
