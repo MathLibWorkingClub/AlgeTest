@@ -14,7 +14,7 @@ NumZ::NumZ(size_t len)
 	}
 }
 
-NumZ::NumZ(size_t len, int_fast32_t * bPat, bool s)
+NumZ::NumZ(size_t len, uint32_t * bPat, bool s)
 {
 	this->bitPatLen = len;
 	this->bitPat = new uint32_t[len];
@@ -47,13 +47,13 @@ NumZ NumZ::operator+(const NumZ& opd) const
 	memcpy(opa, this->bitPat, this->bitPatLen);
 	for (size_t i = len - 1; i >= this->bitPatLen; i--)
 	{
-		opa[i] = 0;
+		opa[i] = 0u;
 	}
 	uint32_t* opb = new uint32_t[len];
 	memcpy(opb, opd.bitPat, opd.bitPatLen);
 	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
 	{
-		opb[i] = 0;
+		opb[i] = 0u;
 	}
 	rst.bitPatLen = len;
 	
@@ -111,13 +111,13 @@ NumZ NumZ::wrappingAdd(const NumZ& opd) const
 	memcpy(opa, this->bitPat, this->bitPatLen);
 	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
 	{
-		opa[i] = 0;
+		opa[i] = 0u;
 	}
 	uint32_t* opb = new uint32_t[len];
 	memcpy(opb, opd.bitPat, opd.bitPatLen);
 	for (size_t i = len - 1; i >= opd.bitPatLen; i--)
 	{
-		opb[i] = 0;
+		opb[i] = 0u;
 	}
 	rst.bitPatLen = len;
 

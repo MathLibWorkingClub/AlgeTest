@@ -11,7 +11,7 @@ protected:
 public:
 	NumZ();
 	explicit NumZ(size_t len);
-	NumZ(size_t len, int_fast32_t* bPat, bool s);
+	NumZ(size_t len, uint32_t* bPat, bool s);
 	NumZ(const NumZ&);
 
 	NumZ operator-() const; // Negative
