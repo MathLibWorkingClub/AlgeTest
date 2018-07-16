@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <cstdint>
 #include <string>
-
+#include <cstring>
 //#include <NumZ.h>
 //#include <NumQ.h>
 //#include <NumR.h>
